@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged((user)=>{
     if(!user){
-        location.replace('./login.html');
+        location.replace('login.html');
     }else {
         document.querySelector(".header").innerHTML = "Hello" + user.email;
     }
