@@ -3,13 +3,15 @@ const form = document.querySelector('#form');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+            location.replace('./index.html');
+        }
+    });
 });
 
-firebase.auth().onAuthStateChanged((user)=>{
-    if(user){
-        location.replace('./index.html');
-    }
-});
+
+
 
 // const auth = getAuth();
 
