@@ -16,7 +16,7 @@
     <main>
         <div class="container">
                 <h1>Login</h1>
-            <form method="post" id="form" autocomplete="off">
+            <form onsubmit="login()" method="post" id="form" autocomplete="off">
                 <div class="txt_field">
                     <input type="email" name="email" id="email" required>
                     <span></span>
@@ -27,7 +27,9 @@
                     <span></span>
                     <label>Password</label>
                 </div>
-                <div class="forgetpass">Forgot Password?</div>
+                <div class="forgotpass">
+                    <a onclick="forgotPassword()">Forgot Password?</a>
+                </div>
                 <input type="submit" value="Login">
                 <div class="signup_link">
                     Don't have an Account? <a href="#!">SignUp</a>
@@ -36,4 +38,8 @@
         </div>
     <main>
 </body>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="./init-firebase.js"></script>
+  <script src="./login.js"></script>
 </html>

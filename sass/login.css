@@ -113,13 +113,13 @@ body {
   transition: .5s;
 }
 
-.container form .forgetpass {
+.container form .forgotpass {
   margin: -5px 0 20px 5px;
   color: #a6a6a6;
   cursor: pointer;
 }
 
-.container form .forgetpass:hover {
+.container form .forgotpass:hover {
   text-decoration: underline;
 }
 
