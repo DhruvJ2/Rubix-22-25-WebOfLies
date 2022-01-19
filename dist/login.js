@@ -10,9 +10,6 @@ form.addEventListener('submit', (event) => {
     });
 });
 
-
-
-
 // const auth = getAuth();
 
 function login(){
