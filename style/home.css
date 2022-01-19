@@ -131,12 +131,11 @@
 #myBtn:hover {
   background-color: white;
   color: #26b7d1;
-  border: #26b7d1 2px solid;
+  border: #26b7d1 1px solid;
   cursor: pointer;
 }
 
-#Button,
-#addBtn {
+#Button {
   letter-spacing: 2px;
   width: 200px;
   margin: 15px;
@@ -165,13 +164,13 @@
 #Button:hover {
   background-color: white;
   color: #26b7d1;
-  border: #26b7d1 2px solid;
+  border: #26b7d1 1px solid;
   cursor: pointer;
 }
 #uploadBtn:hover {
   background-color: white;
   color: #26b7d1;
-  border: #26b7d1 2px solid;
+  border: #26b7d1 1px solid;
   cursor: pointer;
 }
 

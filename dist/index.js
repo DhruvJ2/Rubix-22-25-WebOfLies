@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (!user) {
-      location.replace('login.html');
-  } else {
-      dataInsert(user.uid);
-
-  }
-=======
 firebase.auth().onAuthStateChanged((user)=>{
     if(!user){
         location.replace('login.html');
     }else {
         dataInsert(user.uid);
     }
->>>>>>> d66433ba52ed20009c4d27157260fef210f970ee
 });
 
 const logout = document.querySelector("#logout");
@@ -56,32 +45,6 @@ custombutton.addEventListener('click', function () {
   realButton.click();
 });
 
-<<<<<<< HEAD
-realButton.addEventListener('change', () => {
-  console.log("xxxxx");
-});
-
-let database = firebase.database();
-
-
-
-function dataInsert(uid){
-  let expense,budget;
-  let inputamt;
-  let modalbtn=document.getElementById()
-  console.log(uid);
-  let database1 = firebase.database().ref("/users/"+uid);
-  database1.once("value",function(snapshot){
-      let flag=0;
-      var data =snapshot.val();
-      console.log(data)
-      budget=data.Budget;
-      expense=data.Expense;
-      console.log(budget,expense)
-  })
- 
-}
-=======
 // invoice processing
 const submit = document.querySelector('#uploadBtn');
 const done = document.querySelector('.progress');
@@ -129,7 +92,7 @@ const done = document.querySelector('.progress');
   var category = document.querySelector("#category");
   var productName = document.querySelector("#productName");
   var amount = document.querySelector("#amount");
-  var addBtn = document.querySelector("#addBtn");
+  var addBtn = document.querySelector("#Button");
   var counter = 0;
 
   function dataInsert(uid){
@@ -162,8 +125,21 @@ const done = document.querySelector('.progress');
       }
       
     });
+
+    let expense,budget;
+    // let inputamt;
+    // let modalbtn=document.getElementById()
+    console.log(uid);
+    let database1 = firebase.database().ref("/users/"+uid);
+    database1.once("value",function(snapshot){
+        let flag=0;
+        var data =snapshot.val();
+        console.log(data)
+        budget=data.Budget;
+        expense=data.Expense;
+        console.log(budget,expense)
+    })
   }
 
 
 
->>>>>>> d66433ba52ed20009c4d27157260fef210f970ee
