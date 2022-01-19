@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Vujahday+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Vujahday+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Vujahday+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Vujahday+Script&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation Bar */
+#navbar {
+  display: flex;
+  align-items: center;
+}
+
+#navbar {
+  background-color: #0891aa;
+  height: 50px;
+  width: 100%;
+  z-index: -1;
+}
+
+#navbar ul {
+  display: flex;
+  font-family: "Roboto Slab", serif;
+  /* font-family: "Vujahday Script"; */
+  font-weight: 800px;
+  font-size: 28px;
+}
+
+#navbar ul li {
+  list-style: none;
+  font-size: 1.3rem;
+}
+
+#navbar ul li a {
+  color: black;
+  display: block;
+  padding: 3px 22px;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+#item {
+  padding-left: 800px;
+}
+#navbar ul li a:hover {
+  color: black;
+  background-color: white;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: #26b7d1;
+  height: 300px;
+  justify-content: space-between;
+}
+
+#image {
+  height: 300px;
+  width: 500px;
+}
+#container2 {
+  padding-left: 180px;
+  padding-top: 65px;
+}
+#name {
+  font-family: "Roboto Slab", serif;
+  font-family: "Vujahday Script", cursive;
+  font-size: 95px;
+}
+
+#desc {
+  font-size: 20px;
+  font-family: "Roboto Slab", serif;
+}
+
+#choosefile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+}
+
+#choosefile p {
+  line-height: 1.5em;
+  font-size: 20px;
+}
+#mi {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  line-height: 1.5rem;
+}
+
+#mi p {
+  line-height: 1.5em;
+  font-size: 20px;
+}
+
+#myBtn {
+  margin-top: 8px;
+  color: white;
+  background-color: #26b7d1;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border: #5f6266 1px solid;
+  border-radius: 15px;
+}
+
+#myBtn:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#Button {
+  margin-top: 8px;
+  color: white;
+  background-color: #26b7d1;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border: #5f6266 1px solid;
+  border-radius: 15px;
+}
+
+#Button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  height: 280px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mi-form h1 {
+  text-align: center;
+}
+
+.form label {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 100%;
+}
+.form input {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.text {
+  padding: 5px;
+  border: #5f6266 1px solid;
+  border-radius: 3px;
+}
+
+#ocr-1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 50px;
+}
+
+#ocr-2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.card {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* height: 300px; */
+}
+
+.card-box {
+  width: 20%;
+  border: #000 solid 1px;
+  border-radius: 15px;
+  background-color: #6dc5e1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card-1 {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* height: 300px; */
+}
+
+.card-1-box {
+  width: 20%;
+  border: #000 solid 1px;
+  border-radius: 15px;
+  background-color: #6dc5e1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+h4 {
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.footer {
+  background-color: #26b7d1;
+}
+
+#about {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 25px;
+}
+#connect {
+  text-align: center;
+  padding-top: 25px;
+  font-size: 25px;
+}
+
+.foot-1 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#link {
+  padding-left: 25px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.foot-2 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#img {
+  height: 30px;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.copyright {
+  text-align: center;
+  padding-bottom: 50px;
+  padding-top: 10px;
+}
