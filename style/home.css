@@ -135,10 +135,11 @@
   cursor: pointer;
 }
 
-#Button {
+#Button,
+#addBtn {
   letter-spacing: 2px;
   width: 200px;
-  margin-top: 15px;
+  margin: 15px;
   color: white;
   background-color: #26b7d1;
   padding: 15px;
@@ -192,7 +193,7 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 40px;
   border: 1px solid #888;
   width: 30%;
   height: 280px;
@@ -293,7 +294,6 @@
 }
 
 h4 {
-  /* height: 50px; */
   text-align: center;
   font-size: 20px;
   padding: 10px;
