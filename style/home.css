@@ -135,7 +135,7 @@
   cursor: pointer;
 }
 
-#Button {
+#Button,#modal-Button{
   letter-spacing: 2px;
   width: 200px;
   margin: 15px;
@@ -161,7 +161,7 @@
   border-radius: 25px;
 }
 
-#Button:hover {
+#Button:hover,#modal-Button:hover {
   background-color: white;
   color: #26b7d1;
   border: #26b7d1 1px solid;

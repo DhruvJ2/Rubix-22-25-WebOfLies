@@ -2,10 +2,21 @@ firebase.auth().onAuthStateChanged((user)=>{
     if(!user){
         location.replace('login.html');
     }else {
+      var data;
+      database.ref("/users/"+user.uid).once("value",function(snapshot){
+         data =snapshot.val();
+    })
+    if(!data)
+    {
+      database.ref('/users/'+user.uid).set({
+        Budget: 1000,
+        Expense: 0,
+    });  
+    }
+      modal.style.display = "block";
         dataInsert(user.uid);
     }
 });
-
 const logout = document.querySelector("#logout");
 
 logout.addEventListener('click', () => {
@@ -92,15 +103,18 @@ const done = document.querySelector('.progress');
   var category = document.querySelector("#category");
   var productName = document.querySelector("#productName");
   var amount = document.querySelector("#amount");
-  var addBtn = document.querySelector("#Button");
+  var addBtn = document.querySelector("#modal-Button");
   var counter = 0;
-
+  // firebaseUser currentUser=mAuth.getCurrentUser();
+//  console.log("Uid ::",firebase.auth().getUserByid());
+  
   function dataInsert(uid){
-    console.log(uid);
-    database.ref('/users/'+uid).set({
-        Budget: 1000,
-        Expense: 0,
-    });  
+    // console.log(uid);
+    
+    // database.ref('/users/'+uid).set({
+    //     Budget: 1000,
+    //     Expense: 0,
+    // });  
     
     addBtn.addEventListener('click', ()=>{
 
@@ -130,9 +144,8 @@ const done = document.querySelector('.progress');
     // let inputamt;
     // let modalbtn=document.getElementById()
     console.log(uid);
-    let database1 = firebase.database().ref("/users/"+uid);
-    database1.once("value",function(snapshot){
-        let flag=0;
+    // let database1 = firebase.database().ref;
+    database.ref("/users/"+uid).once("value",function(snapshot){
         var data =snapshot.val();
         console.log(data)
         budget=data.Budget;
