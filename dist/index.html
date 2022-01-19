@@ -34,7 +34,9 @@
             <p>Have a Image of your Bill?</p>
             <p>Upload it</p>
             <input type="file" id="myfile" name="myfile" hidden= "hidden">
-            <input type="Button" id="Button" value="Choose File"> 
+            <input type="Button" id="Button" value="Choose File">
+            <button type="submit" id="uploadBtn">Upload</button> 
+            <p class="progress"></p>
         </div>
 
         <div id="mi">
@@ -92,7 +94,10 @@
                     <label>Prize</label>
                     <input  class="text" type="text" name="Password" placeholder="Enter the Amount">
                   </div>
+                  <div class="modal-container">
+                  <input id="Button" value="Add" type="submit" name="submit">
                   <input id="Button" value="Submit" type="submit" name="submit">
+                  </div>
                   </div>
           </div>
         </div>
@@ -102,15 +107,15 @@
 <div class="card">
   <div class="card-box">
     <h4>Online or offline</h4> 
-    <p>Create text from image files using Paisa Dekho free online OCR software. You can use Optical Character Recognition from any application, anytime, anywhere! Work online through Paisa Dekho. Try our easy-to-use PDF tools like OCR services online for free.</p> 
+    <p class="content">Create text from image files using Paisa Dekho free online OCR software. You can use Optical Character Recognition from any application, anytime, anywhere! Work online through Paisa Dekho. Try our easy-to-use PDF tools like OCR services online for free.</p> 
   </div>
   <div class="card-box">
     <h4>Run OCR</h4> 
-    <p>Do more with your PDF documents! Upload files and use OCR to convert scanned images containing text in the form of PDF document and make your life easier.</p> 
+    <p class="content">Do more with your PDF documents! Upload files and use OCR to convert scanned images containing text in the form of PDF document and make your life easier.</p> 
   </div>
   <div class="card-box">
     <h4>Send by email </h4> 
-    <p>Once your PDF file has been created, access the online OCR file by downloading the PDF to your computer and viewing the OCR content within your document directly through your web browser. Once our software has output your new, editable PDF. You will receive your summarized PDF at the end of every month through E-mail.</p> 
+    <p class="content">Once your PDF file has been created, access the online OCR file by downloading the PDF to your computer and viewing the OCR content within your document directly through your web browser. Once our software has output your new, editable PDF. You will receive your summarized PDF at the end of every month through E-mail.</p> 
   </div>
 </div>
 
@@ -120,16 +125,16 @@
     <h4>What is OCR & how do you
       OCR an image?
       </h4> 
-    <p>Need to digitize paper documents? Just sit back and watch our online OCR software do its magic! Our OCR tool will automatically scan your document for recognizable text within images.</p> 
+    <p class="content">Need to digitize paper documents? Just sit back and watch our online OCR software do its magic! Our OCR tool will automatically scan your document for recognizable text within images.</p> 
   </div>
   <div class="card-1-box">
     <h4>Scan & recognize information within images</h4> 
-    <p>Have a lot of files to recognize and convert with OCR? No worries! Paisa Dekho gives you the power to recognize text from files at once! Turn an image text recognition PDF documents, allowing you to edit scanned documents with ease and avoid retyping documents in Microsoft Word or another application.</p> 
+    <p class="content">Have a lot of files to recognize and convert with OCR? No worries! Paisa Dekho gives you the power to recognize text from files at once! Turn an image text recognition PDF documents, allowing you to edit scanned documents with ease and avoid retyping documents in Microsoft Word or another application.</p> 
   </div>
   <div class="card-1-box">
     <h4>Create PDFs using OCR
       or from blank</h4> 
-    <p>Our OCR recognition product is just one of the many ways you can format documents to your needs.</p> 
+    <p class="content">Our OCR recognition product is just one of the many ways you can format documents to your needs.</p> 
   </div>
 </div>
 
@@ -162,6 +167,7 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
   <script src="./init-firebase.js"></script>
   <script src="index.js"></script>
 </html>
