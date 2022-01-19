@@ -89,21 +89,17 @@ const done = document.querySelector('.progress');
   },false);
 
   const database = firebase.database()
-  var category = document.querySelector("#category");
-  var productName = document.querySelector("#productName");
-  var amount = document.querySelector("#amount");
-  var addBtn = document.querySelector("#Button");
+  const category = document.querySelector("#category");
+  const productName = document.querySelector("#productName");
+  const amount = document.querySelector("#amount");
+  const addBtn = document.querySelector("#modal-Button");
   var counter = 0;
+  var totalExpense = 0;
 
-  function dataInsert(uid){
-    console.log(uid);
-    database.ref('/users/'+uid).set({
-        Budget: 1000,
-        Expense: 0,
-    });  
+  function dataInsert(uid){  
     
+    // product adding and total expense logic
     addBtn.addEventListener('click', ()=>{
-
       database.ref('/Expense/'+uid+'/'+counter).set({
         Category: category.value,
         Product: productName.value,
@@ -112,33 +108,20 @@ const done = document.querySelector('.progress');
       productName.value = "";
       amount.value = "";
       counter++;
+      database.ref('/Expense/'+uid).once("value", (snapshot)=>{
+        var itemCategory, amt;
+        var data = snapshot.val();
+        totalExpense = 0;
+        for(let i in data){
+          itemCategory = data[i].Category;
+          amt = data[i].Amount;
+          totalExpense += parseInt(amt);
+        }
+        database.ref('/Total/'+uid).set({
+          TotalExpense:totalExpense,
+        });
+      });
     });
-
-    database.ref('/Expense/'+uid).once("value", (snapshot)=>{
-      var itemCategory, amt;
-      var data = snapshot.val();
-      console.log(data);
-      for(let i in data){
-        itemCategory = data[i].Category;
-        amt = data[i].Amount;
-        console.log(amt,itemCategory);
-      }
-      
-    });
-
-    let expense,budget;
-    // let inputamt;
-    // let modalbtn=document.getElementById()
-    console.log(uid);
-    let database1 = firebase.database().ref("/users/"+uid);
-    database1.once("value",function(snapshot){
-        let flag=0;
-        var data =snapshot.val();
-        console.log(data)
-        budget=data.Budget;
-        expense=data.Expense;
-        console.log(budget,expense)
-    })
   }
 
 
