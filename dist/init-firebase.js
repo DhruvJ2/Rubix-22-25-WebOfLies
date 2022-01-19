@@ -4,7 +4,7 @@ const firebaseConfig = {
     projectId: "weboflies-c395b",
     storageBucket: "weboflies-c395b.appspot.com",
     messagingSenderId: "531352097654",
-    appId: "1:531352097654:web:4511ca601fc023e7abe057"
+    appId: "1:531352097654:web:4511ca601fc023e7abe057",
   };
 
   // Initialize Firebase
