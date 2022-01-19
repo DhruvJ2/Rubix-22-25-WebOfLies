@@ -2,7 +2,7 @@ firebase.auth().onAuthStateChanged((user)=>{
     if(!user){
         location.replace('login.html');
     }else {
-        // document.querySelector(".header").innerHTML = "Hello" + user.email;
+        dataInsert(user.uid);
     }
 });
 
@@ -87,3 +87,45 @@ const done = document.querySelector('.progress');
         }
       }
   },false);
+
+  const database = firebase.database()
+  var category = document.querySelector("#category");
+  var productName = document.querySelector("#productName");
+  var amount = document.querySelector("#amount");
+  var addBtn = document.querySelector("#addBtn");
+  var counter = 0;
+
+  function dataInsert(uid){
+    console.log(uid);
+    database.ref('/users/'+uid).set({
+        Budget: 1000,
+        Expense: 0,
+    });  
+    
+    addBtn.addEventListener('click', ()=>{
+
+      database.ref('/Expense/'+uid+'/'+counter).set({
+        Category: category.value,
+        Product: productName.value,
+        Amount: amount.value,
+      });      
+      productName.value = "";
+      amount.value = "";
+      counter++;
+    });
+
+    database.ref('/Expense/'+uid).once("value", (snapshot)=>{
+      var itemCategory, amt;
+      var data = snapshot.val();
+      console.log(data);
+      for(let i in data){
+        itemCategory = data[i].Category;
+        amt = data[i].Amount;
+        console.log(amt,itemCategory);
+      }
+      
+    });
+  }
+
+
+

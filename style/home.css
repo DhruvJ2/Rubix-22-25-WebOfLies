@@ -134,10 +134,10 @@
   cursor: pointer;
 }
 
-#Button {
+#Button, #addBtn {
   letter-spacing: 2px;
   width: 200px;
-  margin-top: 15px;
+  margin: 15px;
   color: white;
   background-color: #26b7d1;
   padding: 15px;
@@ -160,7 +160,7 @@
   border-radius: 25px;
 }
 
-#Button:hover {
+#Button:hover, #addBtn:hover{
   background-color: black;
   color: white;
   cursor: pointer;
@@ -189,7 +189,7 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 40px;
   border: 1px solid #888;
   width: 30%;
   height: 280px;
@@ -279,7 +279,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* height: 300px; */
 }
 
 .card-1-box {
@@ -292,7 +291,6 @@
 }
 
 h4 {
-  height: 50px;
   text-align: center;
   font-size: 20px;
   padding: 10px;
