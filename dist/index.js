@@ -1,14 +1,32 @@
-firebase.auth().onAuthStateChanged((user)=>{
-    if(!user){
-        location.replace('login.html');
-    } else {
-      modal.style.display = "block";
-        dataInsert(user.uid);
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    location.replace('login.html');
+  } else {
+    var data;
+    database.ref("/users/" + user.uid).once("value", function (snapshot) {
+      data = snapshot.val();
+    })
+    if (!data) {
+      modal1.style.display = "block";
+      let budget = document.getElementById('Budget');
+      let income = document.getElementById('Income');
+      let fixedExpense = document.getElementById('FixedExpense');
+      let btnfirstModal = document.getElementById('UserButton');
+      btnfirstModal.addEventListener('click', function () {
+        database.ref('/users/' + user.uid).set({
+          Budget: budget.value,
+          Expense: 0,
+          Income:income.value,
+          FixedExpense:fixedExpense.value
+      });
+       budget.value=income.value=fixedExpense.value="";
+      })
     }
+   
+    dataInsert(user.uid);
+  }
 });
-
 const logout = document.querySelector("#logout");
-
 logout.addEventListener('click', () => {
   firebase.auth().signOut();
 });
@@ -35,7 +53,7 @@ span.onclick = function () {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
-      modal.style.display = "none";
+    modal.style.display = "none";
   }
 }
 
@@ -50,100 +68,102 @@ custombutton.addEventListener('click', function () {
 const submit = document.querySelector('#uploadBtn');
 const done = document.querySelector('.progress');
 
-  realButton.addEventListener("change",function(){
-    var file = this.files[0];
-  
-    if (file) {
-        if ((file.type == 'image/png') ||
-            (file.type == 'image/jpg') ||          
-            (file.type == 'image/jpeg')){
-          
-           var reader = new FileReader();
-  
-            reader.onload = function (evt) {
-                var imgTag = evt.target.result;
-                submit.addEventListener('click', () => {
-                    done.innerText = "Scannig....";
-                    Tesseract.recognize(
-                        imgTag,
-                        'eng',
-                        { logger: m => console.log(m) }
-                    ).then(({ data: { text } }) => {
-                        console.log(text);
-                        done.innerText = "Done!";
-                    });
-                });
-            alert("Image succefully loaded");
-        };
-  
-        reader.onerror = function (evt) {
-          console.error("An error ocurred reading the file",evt);
-        };
-  
-        reader.readAsDataURL(file);
-          
-        }else{
-          alert("Please provide a png or jpg image.");
-          return false;
-        }
-      }
-  },false);
+realButton.addEventListener("change", function () {
+  var file = this.files[0];
 
-  const database = firebase.database()
-  var category = document.querySelector("#category");
-  var productName = document.querySelector("#productName");
-  var amount = document.querySelector("#amount");
-  var addBtn = document.querySelector("#Button");
-  var counter = 0;
+  if (file) {
+    if ((file.type == 'image/png') ||
+      (file.type == 'image/jpg') ||
+      (file.type == 'image/jpeg')) {
 
-  function dataInsert(uid){
-    console.log(uid);
-    database.ref('/users/'+uid).set({
-        Budget: 1000,
-        Expense: 0,
-    });  
-    
-    addBtn.addEventListener('click', ()=>{
+      var reader = new FileReader();
 
-      database.ref('/Expense/'+uid+'/'+counter).set({
-        Category: category.value,
-        Product: productName.value,
-        Amount: amount.value,
-      });      
-      productName.value = "";
-      amount.value = "";
-      counter++;
+      reader.onload = function (evt) {
+        var imgTag = evt.target.result;
+        submit.addEventListener('click', () => {
+          done.innerText = "Scannig....";
+          Tesseract.recognize(
+            imgTag,
+            'eng',
+            { logger: m => console.log(m) }
+          ).then(({ data: { text } }) => {
+            console.log(text);
+            done.innerText = "Done!";
+          });
+        });
+        alert("Image succefully loaded");
+      };
+
+      reader.onerror = function (evt) {
+        console.error("An error ocurred reading the file", evt);
+      };
+
+      reader.readAsDataURL(file);
+
+    } else {
+      alert("Please provide a png or jpg image.");
+      return false;
+    }
+  }
+}, false);
+
+const database = firebase.database()
+var category = document.querySelector("#category");
+var productName = document.querySelector("#productName");
+var amount = document.querySelector("#amount");
+var addBtn = document.querySelector("#modal-Button");
+var counter = 0;
+// firebaseUser currentUser=mAuth.getCurrentUser();
+//  console.log("Uid ::",firebase.auth().getUserByid());
+
+function dataInsert(uid) {
+  // console.log(uid);
+
+  // database.ref('/users/'+uid).set({
+  //     Budget: 1000,
+  //     Expense: 0,
+  // });  
+
+  addBtn.addEventListener('click', () => {
+
+    database.ref('/Expense/' + uid + '/' + counter).set({
+      Category: category.value,
+      Product: productName.value,
+      Amount: amount.value,
     });
+    productName.value = "";
+    amount.value = "";
+    counter++;
+  });
 
-    database.ref('/Expense/'+uid).once("value", (snapshot)=>{
-      var itemCategory, amt;
-      var data = snapshot.val();
-      console.log(data);
-      for(let i in data){
-        itemCategory = data[i].Category;
-        amt = data[i].Amount;
-        console.log(amt,itemCategory);
-      }
-      
-    });
+  database.ref('/Expense/' + uid).once("value", (snapshot) => {
+    var itemCategory, amt;
+    var data = snapshot.val();
+    console.log(data);
+    for (let i in data) {
+      itemCategory = data[i].Category;
+      amt = data[i].Amount;
+      console.log(amt, itemCategory);
+    }
 
-    let expense,budget;
-    // let inputamt;
-    // let modalbtn=document.getElementById()
-    console.log(uid);
-    let database1 = firebase.database().ref("/users/"+uid);
-    database1.once("value",function(snapshot){
-        let flag=0;
-        var data =snapshot.val();
-        console.log(data)
-        budget=data.Budget;
-        expense=data.Expense;
-        console.log(budget,expense)
-    })
+  });
+
+  let expense, budget;
+  // let inputamt;
+  // let modalbtn=document.getElementById()
+  console.log(uid);
+  // let database1 = firebase.database().ref;
+  database.ref("/users/" + uid).once("value", function (snapshot) {
+    var data = snapshot.val();
+    console.log(data)
+    budget = data.Budget;
+    expense = data.Expense;
+    console.log(budget, expense)
+  })
 }
-  
+
 // Get the modal
-var modal = document.getElementById("myModal-1");
+var modal1 = document.getElementById("myModal-1");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[1];
@@ -151,13 +171,13 @@ var span = document.getElementsByClassName("close")[1];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
-  modal.style.display = "none";
+  modal1.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
-      modal.style.display = "none";
+    modal1.style.display = "none";
   }
 }
 
