@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Vujahday+Script&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -11,12 +13,12 @@ body {
   0% {
     opacity: 0;
     -webkit-transform: translateX(-10%);
-            transform: translateX(-10%);
+    transform: translateX(-10%);
   }
   100% {
     opacity: 1;
     -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    transform: translateX(0%);
   }
 }
 
@@ -24,12 +26,12 @@ body {
   0% {
     opacity: 0;
     -webkit-transform: translateX(-10%);
-            transform: translateX(-10%);
+    transform: translateX(-10%);
   }
   100% {
     opacity: 1;
     -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    transform: translateX(0%);
   }
 }
 
@@ -38,16 +40,16 @@ body {
   top: 30%;
   left: 65%;
   -webkit-transform: translate(50%, 50%);
-          transform: translate(50%, 50%);
+  transform: translate(50%, 50%);
   width: 500px;
   background: #fff;
   border-radius: 10px;
   -webkit-animation: fadeAnimation ease 3s;
-          animation: fadeAnimation ease 3s;
+  animation: fadeAnimation ease 3s;
   -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .container h1 {
@@ -59,7 +61,7 @@ body {
 .container form {
   padding: 0 40px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container form .txt_field {
@@ -78,7 +80,8 @@ body {
   outline: none;
 }
 
-.container form .txt_field input:focus ~ label, .container form .txt_field input:valid ~ label {
+.container form .txt_field input:focus ~ label,
+.container form .txt_field input:valid ~ label {
   top: -5px;
   color: #067dccf6;
 }
@@ -94,23 +97,23 @@ body {
   left: 5px;
   color: #adadad;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   font-size: 16px;
   pointer-events: none;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .container form .txt_field span::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 40px;
   left: 0;
   width: 0%;
   height: 2px;
   background: #067dccf6;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .container form .forgotpass {
@@ -140,8 +143,8 @@ body {
   background: #fff;
   border: 1px solid #067dccf6;
   color: #067dccf6;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .container form .signup_link {
@@ -158,5 +161,24 @@ body {
 
 .container form .signup_link a:hover {
   text-decoration: underline;
+}
+
+.head {
+  padding-left: 100px;
+  padding-top: 200px;
+  font-family: "Roboto Slab", serif;
+  font-family: "Vujahday Script", cursive;
+  font-size: 95px;
+  letter-spacing: 3px;
+}
+
+.para {
+  padding-left: 100px;
+  width: 40%;
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Roboto Slab", serif;
+  margin-top: -70px;
 }
 /*# sourceMappingURL=login.css.map */
