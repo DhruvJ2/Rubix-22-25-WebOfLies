@@ -10,7 +10,40 @@ const logout = document.querySelector("#logout");
 logout.addEventListener('click', () => {
     firebase.auth().signOut();
 });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function () {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}   
+
 var database = firebase.database();
+const category = document.querySelector("#category");
+const productName = document.querySelector("#productName");
+const amount = document.querySelector("#amount");
+const addBtn = document.querySelector("#modal-Button");
+var totalExpense = 0;
+
 function dataInsert(uid) {
     let categoryamt = {
         Food: 0,
@@ -105,7 +138,63 @@ console.log("Hemlo",lifestyle)
         TE.innerHTML='Rs'+userData.Expense;
         Bal.innerHTML='Rs'+userData.Balance;
         
+        var counter = 0;
+        database.ref('/Expense/' + uid).once("value", (snapshot) => {
+          var data = snapshot.val();
+          if (data.length > counter || data.value == null) {
+            counter = data.length;
+          } else {
+            counter = 0;
+          }
+        });
+        var totalExpense = 0;
+     // product adding and total expense logic
+    
+  addBtn.addEventListener('click', () => {
+    database.ref('/Expense/' + uid + '/' + counter).set({
+      Category: category.value,
+      Product: productName.value,
+      Amount: amount.value,
+    });
+    
+    productName.value = "";
+    amount.value = "";
+    
+    
+    database.ref('/Expense/' + uid).once("value", (snapshot) => {
+      var itemCategory, amt;
+      var data = snapshot.val();
+      totalExpense = 0;
+      for (let i in data) {
+        itemCategory = data[i].Category;
+        amt = data[i].Amount;
+        totalExpense += parseInt(amt);
+      }
+      database.ref('/Total/' + uid).set({
+        TotalExpense: totalExpense,
+      });
+      database.ref('/users/' + uid).update({
+        Expense: totalExpense,
+      });
+    });
+    location.reload();
+    counter++;
+  });
+
+  database.ref('/users/'+uid).once("value",(snapshot)=>{
+    var data=snapshot.val();
+    console.log("heyyyyyyy",data)
+    if(data.Expense==data.Budget)
+    {
+      alert("You have reached Your limit!!")
+    }
+    if(data.Expense>data.Budget)
+    {
+      alert("You have exceeded your limit")
+    }
+  })
       });  
+
 }
 function chartInsert(categoryamt,uid)
 {

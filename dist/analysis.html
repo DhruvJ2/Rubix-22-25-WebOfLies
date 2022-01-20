@@ -19,7 +19,7 @@
          <nav id="navbar">
             <ul>
                <li class="item"><a href="index.html">Home</a></li>
-               <li class="item"><a href="#">Manual Insertion</a></li>
+               <li class="item"><a href="#" id="myBtn">Manual Insertion</a></li>
                <li class="item"><a href="analysis.html">Analysis</a></li>
                <li class="item" id="logout"><a href="#">Log Out</a></li>
             </ul>
@@ -28,6 +28,60 @@
    </header>
 
    <main>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="mi-form">
+          <h1>Manual Insertion</h1>
+          <div class="form">
+
+            <!-- <input  class="text" type="text" name="Username" placeholder="Enter Product-Category"> -->
+
+            <form>
+              <label> Product-Category </label>
+              <select id="category">
+                <option value="Food"> Food
+                </option>
+                <option value="Fashion"> Fashion
+                </option>
+                <option value="Electronics"> Electronics
+                </option>
+                <option value="Entertainment"> Entertaniment
+                </option>
+                </option>
+                <option value="Fuel">Fuel
+                </option>
+                </option>
+                <option value="Grocery">Grocery
+                </option>
+                </option>
+                <option value="Pharmacy"> Pharmacy
+                </option>
+                </option>
+                <option value="Lifestyle">Lifestyle
+                </option>
+                </option>
+                <option value="Others">Others
+                </option>
+              </select>
+            </form>
+          </div>
+          <div class="form">
+            <label>Product-Name</label>
+            <input id="productName" class="text" type="text" name="Email" placeholder="Enter Product-Name" autocomplete="off">
+          </div>
+          <div class="form">
+            <label>Prize</label>
+            <input id="amount" class="text" type="text" name="Password" placeholder="Enter the Amount" autocomplete="off">
+          </div>
+          <input id="modal-Button" value="Submit" type="submit" name="submit">
+        </div>
+      </div>
+    </div>
       <div class="pdfElement">
       <div class="head-bg">
          <h1 class="head-1">Paisa Dekho</h1>
