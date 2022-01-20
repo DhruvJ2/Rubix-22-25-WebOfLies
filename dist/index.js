@@ -1,5 +1,5 @@
 
-var date= new Date();
+var date = new Date();
 
 firebase.auth().onAuthStateChanged((user) => {
   if (!user) {
@@ -8,28 +8,28 @@ firebase.auth().onAuthStateChanged((user) => {
     database.ref("/users/" + user.uid).once("value", function (snapshot) {
       var data = snapshot.val();
       var day = date.getDate();
-      if(day > 30){
+      if (day > 30) {
         day = 0;
-      }else{
+      } else {
         day = date.getDate();
       }
-    if (!data || day > 30) {
-      modal1.style.display = "block";
-      let budget = document.getElementById('Budget');
-      let income = document.getElementById('Income');
-      let fixedExpense = document.getElementById('FixedExpense');
-      let btnfirstModal = document.getElementById('UserButton');
-      btnfirstModal.addEventListener('click', function () {
-        database.ref('/users/' + user.uid).set({
-          Budget: budget.value,
-          Expense: 0,
-          Income:income.value,
-          FixedExpense:fixedExpense.value
-      });
-       budget.value=income.value=fixedExpense.value="";
-      })
-    }
-  });
+      if (!data || day > 30) {
+        modal1.style.display = "block";
+        let budget = document.getElementById('Budget');
+        let income = document.getElementById('Income');
+        let fixedExpense = document.getElementById('FixedExpense');
+        let btnfirstModal = document.getElementById('UserButton');
+        btnfirstModal.addEventListener('click', function () {
+          database.ref('/users/' + user.uid).set({
+            Budget: budget.value,
+            Expense: 0,
+            Income: income.value,
+            FixedExpense: fixedExpense.value
+          });
+          budget.value = income.value = fixedExpense.value = "";
+        })
+      }
+    });
     dataInsert(user.uid);
   }
 });
@@ -41,14 +41,19 @@ logout.addEventListener('click', () => {
 // Get the modal
 var modal = document.getElementById("myModal");
 
+
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
+var NavmodalLink = document.getElementById("Navbar-Manual-Insertion");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function () {
+  modal.style.display = "block";
+}
+NavmodalLink.onclick=function(){
   modal.style.display = "block";
 }
 
@@ -112,8 +117,8 @@ realButton.addEventListener("change", function () {
             'eng',
             { logger: m => console.log(m) }
           ).then(({ data: { text } }) => {
-           
-            done.innerText = "Done!"; 
+
+            done.innerText = "Done!";
             console.log(text);
             processing(text);
           });
@@ -134,66 +139,80 @@ realButton.addEventListener("change", function () {
 }, false);
 
 const database = firebase.database()
-  const category = document.querySelector("#category");
-  const productName = document.querySelector("#productName");
-  const amount = document.querySelector("#amount");
-  const addBtn = document.querySelector("#modal-Button");
-  var totalExpense = 0;
+const category = document.querySelector("#category");
+const productName = document.querySelector("#productName");
+const amount = document.querySelector("#amount");
+const addBtn = document.querySelector("#modal-Button");
+var totalExpense = 0;
 
-  function dataInsert(uid){  
-    var counter = 0;
-    database.ref('/Expense/'+uid).once("value", (snapshot)=>{
+function dataInsert(uid) {
+  var counter = 0;
+  database.ref('/Expense/' + uid).once("value", (snapshot) => {
+    var data = snapshot.val();
+    if (data.length > counter || data.value == null) {
+      counter = data.length;
+    } else {
+      counter = 0;
+    }
+  });
+  // product adding and total expense logic
+  addBtn.addEventListener('click', () => {
+    database.ref('/Expense/' + uid + '/' + counter).set({
+      Category: category.value,
+      Product: productName.value,
+      Amount: amount.value,
+    });
+    productName.value = "";
+    amount.value = "";
+
+    database.ref('/Expense/' + uid).once("value", (snapshot) => {
+      var itemCategory, amt;
       var data = snapshot.val();
-      if(data.length > counter || data.value == null){
-        counter = data.length;
-      }else{
-        counter = 0; 
+      totalExpense = 0;
+      for (let i in data) {
+        itemCategory = data[i].Category;
+        amt = data[i].Amount;
+        totalExpense += parseInt(amt);
       }
-    });
-    // product adding and total expense logic
-    addBtn.addEventListener('click', ()=>{
-      database.ref('/Expense/'+uid+'/'+counter).set({
-        Category: category.value,
-        Product: productName.value,
-        Amount: amount.value,
-      });      
-      productName.value = "";
-      amount.value = "";
-
-      database.ref('/Expense/'+uid).once("value", (snapshot)=>{
-        var itemCategory, amt;
-        var data = snapshot.val();
-        totalExpense = 0;
-        for(let i in data){
-          itemCategory = data[i].Category;
-          amt = data[i].Amount;
-          totalExpense += parseInt(amt);
-        }
-        database.ref('/Total/'+uid).set({
-          TotalExpense:totalExpense,
-        });
-        database.ref('/users/'+uid).update({
-        Expense: totalExpense,
-        });
+      database.ref('/Total/' + uid).set({
+        TotalExpense: totalExpense,
       });
-      counter++;
+      database.ref('/users/' + uid).update({
+        Expense: totalExpense,
+      });
     });
-  }
+    counter++;
+  });
+  database.ref('/users/'+uid).once("value",(snapshot)=>{
+    var data=snapshot.val();
+    if(data.Expense==data.Budget-2000)
+    {
+      alert("Rs 2000 left to spend for this Month")
+    }
+    if(data.Expense==data.Budget)
+    {
+      alert("You have reached Your limit!!")
+    }
+    if(data.Expense>data.Budget)
+    {
+      alert("You have exceeded your limit")
+    }
+  })
+}
 
-function processing(text){
+function processing(text) {
   text = text.toLowerCase();
   console.log(text);
   var regex = /\btotal\b./;
   var result = text.search(regex);
   alert(result);
-  var totaltxt = text.substr(result+4,12);
+  var totaltxt = text.substr(result + 4, 12);
   alert(totaltxt);
 
   var totalvalueregex = /\d+/;
   var finaltotalresult = totaltxt.search(totalvalueregex);
-  var finaltotal = totaltxt.substr(finaltotalresult,5);
+  var finaltotal = totaltxt.substr(finaltotalresult, 5);
   alert(finaltotal);
-
 }
 
 
