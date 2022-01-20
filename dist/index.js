@@ -2,10 +2,8 @@ firebase.auth().onAuthStateChanged((user) => {
   if (!user) {
     location.replace('login.html');
   } else {
-    var data;
     database.ref("/users/" + user.uid).once("value", function (snapshot) {
-      data = snapshot.val();
-    })
+      var data = snapshot.val();
     if (!data) {
       modal1.style.display = "block";
       let budget = document.getElementById('Budget');
@@ -22,6 +20,7 @@ firebase.auth().onAuthStateChanged((user) => {
        budget.value=income.value=fixedExpense.value="";
       })
     }
+  })
    
     dataInsert(user.uid);
   }

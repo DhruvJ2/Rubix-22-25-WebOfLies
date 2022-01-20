@@ -102,6 +102,10 @@ p {
   font-family: "Vujahday Script", cursive;
   font-size: 95px;
   letter-spacing: 3px;
+ 
+}
+.head-bg{
+  background-color:#26b7d1 ;
 }
 
 .head-2 {
@@ -110,7 +114,8 @@ p {
   font-size: 20px;
   font-weight: 700;
   font-family: "Roboto Slab", serif;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
+  margin-bottom:30px
 }
 
 .padding {
