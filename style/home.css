@@ -135,7 +135,8 @@
   cursor: pointer;
 }
 
-#Button,#modal-Button{
+#Button,
+#modal-Button {
   letter-spacing: 2px;
   width: 200px;
   margin: 15px;
@@ -161,7 +162,8 @@
   border-radius: 25px;
 }
 
-#Button:hover,#modal-Button:hover {
+#Button:hover,
+#modal-Button:hover {
   background-color: white;
   color: #26b7d1;
   border: #26b7d1 1px solid;
@@ -397,3 +399,23 @@ h4 {
   display: flex;
   justify-content: space-around;
 } */
+
+#UserButton {
+  letter-spacing: 2px;
+  width: 100px;
+  margin-top: 20px;
+  color: white;
+  background-color: #26b7d1;
+  padding: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  border: none;
+  border-radius: 25px;
+}
+
+#UserButton:hover {
+  background-color: white;
+  color: #26b7d1;
+  border: #26b7d1 1px solid;
+  cursor: pointer;
+}
