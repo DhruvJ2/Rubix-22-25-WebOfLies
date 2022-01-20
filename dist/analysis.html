@@ -28,13 +28,16 @@
    </header>
 
    <main>
-      <h1 class="head-1">Paisa Dekho</h1>
-      <h2 class="head-2">Detailed Analysis</h2>
+      <div class="head-bg">
+         <h1 class="head-1">Paisa Dekho</h1>
+         <h2 class="head-2">Detailed Analysis</h2>
+      </div>
+      
       <div class="container">
-         <div class="card">
+         <div class="card" style="margin-left:10px">
             <h3>Budget</h3>
             <img id="img-1" src="../img/Budget__2_-removebg-preview.png" height="50px" alt="Budget">
-            <p class="amt">Rs 1000</p>
+            <p class="amt budget" id="Budget">Rs 1000</p>
             <h4>Categories</h4>
             <p>Food</p>
             <p>Fashion</p>
@@ -46,26 +49,27 @@
             <p>Lifestyle</p>
             <p>Others</p>
          </div>
-         <div class="card">
+         
+         <div class="card" style="margin-right: 10px;">
             <h3>Expenses</h3>
             <img id="img-2" src="../img/Expense__2_-removebg-preview.png" height="50px" alt="Expenses">
-            <p class="amt">Rs 600</p>
+            <p class="amt expense" id="Expenses">Rs 600</p>
             <h4>Expense Value</h4>
-            <p>Rs 100</p>
-            <p>Rs 100</p>
-            <p>Rs 100</p>
-            <p>Rs 100</p>
-            <p>Rs 100</p>
-            <p>Rs 100</p>
-            <p>Rs 0</p>
-            <p>Rs 0</p>
-            <p>Rs 0</p>
+            <p id="Food"></p>
+            <p id="Fashion"></p>
+            <p id="Electronics"></p>
+            <p id="Entertainment"></p>
+            <p id="Fuel"></p>
+            <p id="Grocery"></p>
+            <p id="Pharmacy"></p>
+            <p id="Lifestyle"></p>
+            <p id="Others"></p>
          </div>
-         <div class="card">
+         <div class="card" style="margin-top: 145px;">
             <h3>Balance</h3>
             <img id="img-3" src="../img/Balance-removebg-preview.png" height="50px" alt="Balance">
-            <p class="amt">Rs 400</p>
-            <h4>Discard</h4>
+            <p class="amt balance" id="Balance">Rs 400</p>
+            <!-- <h4>Discard</h4>
             <p>a</p>
             <p>a</p>
             <p>a</p>
@@ -74,9 +78,10 @@
             <p>a</p>
             <p>a</p>
             <p>a</p>
-            <p>a</p>
+            <p>a</p> -->
 
          </div>
+         
       </div>
 
 
@@ -85,7 +90,7 @@
 
 
       <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-      <script language="JavaScript">
+      <!-- <script language="JavaScript">
          $(document).ready(function () {
             var chart = {
                type: 'pie',
@@ -165,7 +170,7 @@
             json.series = series;
             $('#container').highcharts(json);
          });
-      </script>
+      </script> -->
 
    </main>
 
@@ -200,18 +205,7 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 <script src="./init-firebase.js"></script>
-<script>
-   firebase.auth().onAuthStateChanged((user)=>{
-      if(!user)
-      {
-         location.replace('login.html')
-      }
-   })
-   const logout = document.querySelector("#logout");
-   logout.addEventListener('click', () => {
-      firebase.auth().signOut();
-   });
-</script>
-
+<script src="analysis.js"></script>
 </html>
