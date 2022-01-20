@@ -8,7 +8,7 @@ form.addEventListener('submit', (event) => {
         if(user){
             location.replace('./index.html');
         }else{
-            passwdError.innerHTML = "Wrong Password";
+            // passwdError.innerHTML = "Wrong Password";
         }
     });
 });
