@@ -37,11 +37,11 @@ body {
 
 .container {
   position: absolute;
-  top: 30%;
+  top: 25%;
   left: 65%;
   -webkit-transform: translate(50%, 50%);
   transform: translate(50%, 50%);
-  width: 500px;
+  width: 400px;
   background: #fff;
   border-radius: 10px;
   -webkit-animation: fadeAnimation ease 3s;
@@ -170,6 +170,7 @@ body {
   font-family: "Vujahday Script", cursive;
   font-size: 95px;
   letter-spacing: 3px;
+  color: white;
 }
 
 .para {
@@ -180,5 +181,13 @@ body {
   font-weight: 700;
   font-family: "Roboto Slab", serif;
   margin-top: -70px;
+  color: white;
+}
+
+#passwd-error{
+  text-decoration: none;
+  color: #ff0000;
+  font-size: 16px;
+  margin-top: -15px;
 }
 /*# sourceMappingURL=login.css.map */

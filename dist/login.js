@@ -1,11 +1,14 @@
 
 const form = document.querySelector('#form');
+const passwdError = document.querySelector("#passwd-error");
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     firebase.auth().onAuthStateChanged((user)=>{
         if(user){
             location.replace('./index.html');
+        }else{
+            passwdError.innerHTML = "Wrong Password";
         }
     });
 });
